@@ -26,33 +26,31 @@ with open(election_path) as csv_file:
         
     with open ("Analysis/txt_file.write", "w")as txt_file:
         
+        txt_file.write("Election Results")
+        txt_file.write('\n')
+        txt_file.write(".............................")
+        txt_file.write('\n')
+        txt_file.write("total vote:"+str(totalVotes))
+        txt_file.write('\n')
+        txt_file.write(".............................")
+        txt_file.write('\n')
+
         for candidate in all_Candidates:
             Vote_number=all_Candidates.get(candidate)
-            Pecentage=Vote_number/totalVotes
+            
 
             if Vote_number>winning_count:
                 winning_count=Vote_number
                 Winning_Candidate=candidate
                 
 
-            txt_file.write("Election Results")
-            txt_file.write('\n')
-            txt_file.write(".............................")
-            txt_file.write('\n')
-            txt_file.write("total vote:"+str(totalVotes))
-            txt_file.write('\n')
-            txt_file.write(".............................")
+            txt_file.write(candidate+":"+"{:.3%}".format(Vote_number/totalVotes)+"("+str(Vote_number)+")")
             txt_file.write('\n')
             
-
-            for candidate, Vote_number in all_Candidates.items():
-                txt_file.write(candidate+":"+"{:.3%}".format(Vote_number/totalVotes)+"("+str(Vote_number)+")")
-                txt_file.write('\n')
-            
-            txt_file.write(".............................")
-            txt_file.write('\n')
-            txt_file.write("winner:"+Winning_Candidate)
-            txt_file.write('\n')
+        txt_file.write(".............................")
+        txt_file.write('\n')
+        txt_file.write("Winner:"+Winning_Candidate)
+        txt_file.write('\n')
 
 
 
